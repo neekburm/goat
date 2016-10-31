@@ -6,9 +6,6 @@ from django.test import LiveServerTestCase
 
 chromedriver = "/home/neekburm/Downloads/chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
-driver = webdriver.Chrome(chromedriver)
-driver.get("http://stackoverflow.com")
-driver.quit()
 
 class NewVisitorTest(LiveServerTestCase):
 
@@ -47,6 +44,14 @@ class NewVisitorTest(LiveServerTestCase):
         # is tying fly-fishing lures)
         # When she hits enter, the page updates, and now the page lists
         # "1: Buy peacock feathers" as an item in a to-do list table
+
+        inputbox.send_keys('testing\n')
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        self.assertAlmostEqual(
+            inputbox.location['x'] + inputbox.size['width'] / 2,
+            512,
+            delta=5
+        )
 
         inputbox.send_keys('Buy peacock feathers')
         inputbox.send_keys(Keys.ENTER)
@@ -103,8 +108,11 @@ class NewVisitorTest(LiveServerTestCase):
         # Edith wonders whether the site will remember her list. Then she sees
         # that the site has generated a unique URL for her -- there is some
         # explanatory text to that effect.
-        self.fail('Finish the test!')
+
         # She visits that URL - her to-do list is still there.
 
-        # Satisfied, she goes back to sleep
+        # She starts a new list and sees the input is nicely
+        # centered there too
+
+        
 
