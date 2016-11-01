@@ -1,13 +1,13 @@
 import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 
 chromedriver = "/home/neekburm/Downloads/chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome(chromedriver)
@@ -108,6 +108,6 @@ class NewVisitorTest(LiveServerTestCase):
 
         self.assertAlmostEqual(
         inputbox.location['x'] + inputbox.size['width'] / 2,
-            512,
+            467,
             delta=5
         )
