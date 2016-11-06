@@ -1,11 +1,14 @@
 import os
 import sys
+import platform
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
-
-chromedriver = "/home/neekburm/Downloads/chromedriver"
+if platform.system() == 'Darwin':
+    chromedriver = '/usr/local/bin/chromedriver'
+else:
+    chromedriver = "/home/neekburm/Downloads/chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
 
 class NewVisitorTest(StaticLiveServerTestCase):
